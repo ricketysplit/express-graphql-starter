@@ -1,0 +1,62 @@
+{
+  "name": "express-graphql-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel src",
+    "build": "babel src --out-dir dist",
+    "prestart": "npm run -s build",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.js --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricketysplit/express-graphql-starter.git"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.4.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "lodash": "^4.17.4",
+    "request": "^2.88.0",
+    "rimraf": "^2.6.1"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^20.0.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.11.1",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.14.2",
+    "supertest": "^3.0.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "author": "Ricky Harkins",
+  "license": "ISC",
+  "homepage": "https://github.com/ricketysplit/express-graphql-starter#readme"
+}
