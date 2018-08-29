@@ -1,5 +1,8 @@
 import {
   GraphQLEnumType,
+  GraphQLInputObjectType,
+  GraphQLInt,
+  GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
   GraphQLList
@@ -11,6 +14,7 @@ export const EmployeePositionType = new GraphQLEnumType({
   values: {
     CEO: { value: 'CEO' },
     SOFTWARE_DEVELOPER: { value: 'Software Developer' },
+    SENIOR_SOFTWARE_DEVELOPER: { value: 'Senior Software Developer' },
     MARKETING_DIRECTOR: { value: 'Marketing Director' },
     MARKETING_INTERN: { value: 'Marketing Intern' },
     IT_DIRECTOR: { value: 'IT Director' }
@@ -22,7 +26,7 @@ const EmployeeType = new GraphQLObjectType({
   description: 'Employee Type',
   fields: () => ({
     id: {
-      type: GraphQLString
+      type: GraphQLInt
     },
     name: {
       type: GraphQLString
@@ -32,19 +36,26 @@ const EmployeeType = new GraphQLObjectType({
     },
     reportsTo: {
       type: EmployeeType,
-      resolve: root => employees.find(e => e.id === root.reportsTo)
+      resolve: root => employees.getOneById(root.reportsTo)
     },
     supervises: {
       type: new GraphQLList(EmployeeType),
-      args: {
-        gender: {
-          type: GraphQLString
-        }
-      },
-      resolve: (root, args) =>
-        employees.filter(
-          e => e.reportsTo === root.id && e.gender === args.gender
-        )
+      resolve: root => employees.getAll().filter(e => e.reportsTo === root.id)
+    }
+  })
+});
+
+export const EmployeeInputType = new GraphQLInputObjectType({
+  name: 'EmployeeInputType',
+  fields: () => ({
+    id: { type: new GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLString },
+    position: { type: EmployeePositionType },
+    reportsTo: {
+      type: GraphQLInt
+    },
+    supervises: {
+      type: GraphQLList(GraphQLInt)
     }
   })
 });

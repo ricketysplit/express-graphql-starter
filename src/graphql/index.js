@@ -1,5 +1,5 @@
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
-import EmployeeQueries from './employee.query';
+import { EmployeeQueries, EmployeeMutations } from './employee.query';
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -10,6 +10,15 @@ const schema = new GraphQLSchema({
       }
     },
     fields: () => ({ ...EmployeeQueries })
+  }),
+  mutation: new GraphQLObjectType({
+    name: 'Mutations',
+    args: {
+      id: {
+        type: GraphQLString
+      }
+    },
+    fields: () => ({ ...EmployeeMutations })
   })
 });
 
