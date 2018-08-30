@@ -28,6 +28,7 @@
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",

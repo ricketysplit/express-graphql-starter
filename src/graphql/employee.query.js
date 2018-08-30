@@ -34,7 +34,7 @@ const EmployeeQueries = {
     type: EmployeeType,
     args: {
       id: {
-        type: GraphQLInt
+        type: GraphQLString
       }
     },
     resolve: (root, args) => employees.getOneById(args.id)

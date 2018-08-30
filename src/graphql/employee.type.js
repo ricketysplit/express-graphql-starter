@@ -26,7 +26,7 @@ const EmployeeType = new GraphQLObjectType({
   description: 'Employee Type',
   fields: () => ({
     id: {
-      type: GraphQLInt
+      type: GraphQLString
     },
     name: {
       type: GraphQLString
@@ -48,7 +48,7 @@ const EmployeeType = new GraphQLObjectType({
 export const EmployeeInputType = new GraphQLInputObjectType({
   name: 'EmployeeInputType',
   fields: () => ({
-    id: { type: new GraphQLNonNull(GraphQLInt) },
+    id: { type: new GraphQLNonNull(GraphQLString) },
     name: { type: GraphQLString },
     position: { type: EmployeePositionType },
     reportsTo: {
